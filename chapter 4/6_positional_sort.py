@@ -1,39 +1,24 @@
-def code_tickets_number(ticket_numbers):
-    parsed_codes = []
+def positional_sort(tickets, tickets_num, code_length):
+    """Time complexity: Θ(n), Ω(n) if m is constant, memory consumption - Θ(n), Ω(n).
+    
+    >>> tickets = ['A4', '0A', 'A2', 'BB']
+    >>> tickets_num = 4
+    >>> code_length = 2
+    >>> positional_sort(tickets, tickets_num, code_length)
+    ['0A', 'A2', 'A4', 'BB']
+    """
+    coded_tickets = code_tickets_number(tickets)
+    sorted_tickets = coded_tickets
 
-    for ticket_code in ticket_numbers:
-        parsed_code = []
+    for k in range((code_length - 1), -1, -1):
+        sorted_tickets = sort_by_character(sorted_tickets, tickets_num, k)
 
-        for char in ticket_code:
-            char_num = ord(char)
+    return decode_tickets_number(sorted_tickets)
 
-            if char_num >= 65:
-                char_num -= 54
-            else:
-                char_num -= 48
-
-            parsed_code.append(char_num)
-        parsed_codes.append(parsed_code)
-    return parsed_codes
-
-
-def decode_tickets_number(ticket_numbers):
-    parsed_codes = []
-
-    for ticket_code in ticket_numbers:
-        parsed_code = ""
-
-        for char_num in ticket_code:
-
-            if char_num >= 11:
-                char_num += 54
-            else:
-                char_num += 48
-
-            parsed_code += chr(char_num)
-        parsed_codes.append(parsed_code)
-    return parsed_codes
-
+def sort_by_character(A, n, k):
+    equal_keys = count_equal_keys(A, n, k)
+    smaller_keys = count_smaller_keys(equal_keys, k)
+    return reorganize(A, smaller_keys, n, k)
 
 def count_equal_keys(A, n, k):
     equal_keys = [0] * 36
@@ -44,15 +29,13 @@ def count_equal_keys(A, n, k):
 
     return equal_keys
 
-
-def count_smaller_keys(equal_keys, n, k):
+def count_smaller_keys(equal_keys, k):
     smaller_keys = [0] * 36
 
     for i in range(1, 36):
         smaller_keys[i] = smaller_keys[i - 1] + equal_keys[i - 1]
 
     return smaller_keys
-
 
 def reorganize(A, smaller_keys, n, k):
     B = [0] * n
@@ -69,26 +52,38 @@ def reorganize(A, smaller_keys, n, k):
 
     return B
 
+def code_tickets_number(tickets):
+    parsed_codes = []
 
-def sort_by_character(A, n, k):
-    equal_keys = count_equal_keys(A, n, k)
-    smaller_keys = count_smaller_keys(equal_keys, n, k)
-    return reorganize(A, smaller_keys, n, k)
+    for ticket_code in tickets:
+        parsed_code = []
+
+        for char in ticket_code:
+            char_num = ord(char)
+
+            if char_num >= 65:
+                char_num -= 55
+            else:
+                char_num -= 48
+
+            parsed_code.append(char_num)
+        parsed_codes.append(parsed_code)
+    return parsed_codes
 
 
-def sort(ticket_numbers, tickets_count, code_length):
-    """Time complexity: Θ(n)."""
-    coded_tickets = code_tickets_number(ticket_numbers)
+def decode_tickets_number(tickets):
+    parsed_codes = []
 
-    for k in range((code_length - 1), -1, -1):
-        sorted_tickets = sort_by_character(coded_tickets, tickets_count, k)
+    for ticket_code in tickets:
+        parsed_code = ""
 
-    return decode_tickets_number(sorted_tickets)
+        for char_num in ticket_code:
 
+            if char_num >= 10:
+                char_num += 55
+            else:
+                char_num += 48
 
-ticket_numbers = ["X3", "F3", "T2"]
-tickets_count = 3
-code_length = 2
-
-sorted_tickets = sort(ticket_numbers, tickets_count, code_length)
-print("Sorted tickets:", sorted_tickets)
+            parsed_code += chr(char_num)
+        parsed_codes.append(parsed_code)
+    return parsed_codes

@@ -1,5 +1,5 @@
 def sort(A, n, m):
-    """Time complexity: Θ(n) if m is constant, memory consumption - Θ(n).
+    """Time complexity: Θ(n), Ω(n) if m is constant, memory consumption - Θ(n), Ω(n).
 
     >>> numbers = [1, 0, 4, 2, 3, 0, 2, 0, 1]
     >>> numbers_count = 9
@@ -14,7 +14,7 @@ def sort(A, n, m):
 
 
 def reorganize(A, smaller_keys, n, m):
-    """Time complexity: Θ(n) if m is constant, memory consumption - Θ(n).
+    """Time complexity: Θ(n), Ω(n) if m is constant, memory consumption - Θ(n), Ω(n).
 
     >>> numbers = [1, 0, 4, 2, 3, 0, 2, 0, 1]
     >>> numbers_count = 9
@@ -41,7 +41,7 @@ def reorganize(A, smaller_keys, n, m):
 
 
 def count_smaller_keys(equal_keys, m):
-    """Time complexity: Θ(n), memory consumption - Θ(n).
+    """Time complexity: Θ(n), Ω(n), memory consumption - Θ(n), Ω(n).
 
     >>> numbers = [1, 0, 4, 2, 3, 0, 2, 0, 1]
     >>> numbers_count = 9
@@ -60,7 +60,7 @@ def count_smaller_keys(equal_keys, m):
 
 
 def count_equal_keys(A, n, m):
-    """Time complexity: Θ(n) if m is constant, memory consumption - Θ(n).
+    """Time complexity: Θ(n), Ω(n) if m is constant, memory consumption - Θ(n), Ω(n).
 
     >>> numbers = [1, 0, 4, 2, 3, 0, 2, 0, 1]
     >>> numbers_count = 9
