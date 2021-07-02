@@ -1,5 +1,6 @@
 def relax(u, v, weight, shortest, previous):
     """Time complexity O(1).
+    
     >>> shortest = [0, 1000]
     >>> previous = [None, None]
     >>> relax(0, 1, 2, shortest, previous)
