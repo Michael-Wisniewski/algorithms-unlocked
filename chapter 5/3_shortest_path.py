@@ -21,9 +21,9 @@ def shortest_path(G, s):
     shortest[s] = 0
     previous = [None] * n
 
-    sorted_vertives = topological_sort(G)
+    sorted_vertices = topological_sort(G)
 
-    for u in sorted_vertives:
+    for u in sorted_vertices:
         for edge in G[u]:
             relax(u, edge['v'], edge['w'],  shortest, previous)
 
@@ -72,7 +72,7 @@ def topological_sort(G):
         if entry_degree == 0:
             next_vertice.append(u)
 
-    while next_vertice:
+    while len(next_vertice):
         u = next_vertice.popleft()
         sorted_vertices.append(u)
 
