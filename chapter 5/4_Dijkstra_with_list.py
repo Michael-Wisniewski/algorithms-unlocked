@@ -2,6 +2,7 @@ def dijkstra_with_list(G, s):
     """n - number of vertices, m - number of edges
     In total find_min takes Θ(n^2) and relax takes O(m).
     Because m <= n^2, time complexity is O(n^2).
+    Does not work for negative weights.
 
     >>> dag = {
     ... 0: [{'v': 1, 'w': 6}, {'v': 3, 'w': 4}],
