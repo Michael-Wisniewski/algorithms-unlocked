@@ -1,9 +1,9 @@
 def shortest_path(G):
-    """ ddd Θ (n**3) for finding all shartest paths.
-    Works for negative weights but not for cyclic graph.
-    memory n2 - if we do not store history of moves
-    elsewhere n^3
+    """Time complexity: Θ(n^3) for finding all shartest paths.
+    Works for negative weights but not for cyclic graphs.
 
+    Memory consumption: Θ(n^3).
+    It will be Θ(n^2), if we do not store history of moves.
 
     >>> dg = {
     ... 0: [{'v': 1, 'w': 3}, {'v': 2, 'w': 8}],
@@ -12,7 +12,7 @@ def shortest_path(G):
     ... 3: [{'v': 0, 'w': 2}, {'v': 2, 'w': -5}],
     ... }
     >>> shortest_path(dg)
-    ([0, 5, 8, 4, 7], [None, 3, 1, 0, 3])
+    ([[[0, 0, 0, 0, 0], [3, 3, 3, 3, 3], [8, 8, 8, 8, -1], [100000, 100000, 4, 4, 4]], [[100000, 100000, 100000, 100000, 3], [0, 0, 0, 0, 0], [100000, 100000, 100000, 100000, -4], [1, 1, 1, 1, 1]], [[100000, 100000, 100000, 100000, 7], [4, 4, 4, 4, 4], [0, 0, 0, 0, 0], [100000, 100000, 5, 5, 5]], [[2, 2, 2, 2, 2], [100000, 5, 5, -1, -1], [-5, -5, -5, -5, -5], [0, 0, 0, 0, 0]]], [[[None, None, None, None, None], [0, 0, 0, 0, 0], [0, 0, 0, 0, 3], [None, None, 1, 1, 1]], [[None, None, None, None, 3], [None, None, None, None, None], [None, None, None, None, 3], [1, 1, 1, 1, 1]], [[None, None, None, None, 3], [2, 2, 2, 2, 2], [None, None, None, None, None], [None, None, 1, 1, 1]], [[3, 3, 3, 3, 3], [None, 0, 0, 2, 2], [3, 3, 3, 3, 3], [None, None, None, None, None]]])
     """
     n = len(G)
     infinity = 100000
@@ -20,12 +20,13 @@ def shortest_path(G):
     shortest = []
     previous = []
 
+    # We can not use [val] * n because all cells will use same memory reference.
     for _ in range(n):
         temp_list_1 = []
         temp_list_2 = []
-        for _ in range(n + 1):
-            temp_list_1.append([infinity] * n)
-            temp_list_2.append([None] * n)
+        for _ in range(n):
+            temp_list_1.append([infinity] * (n + 1))
+            temp_list_2.append([None] * (n + 1))
         shortest.append(temp_list_1)
         previous.append(temp_list_2)
 
@@ -39,16 +40,14 @@ def shortest_path(G):
                     shortest[u][v][0] = edge['w']
                     previous[u][v][0] = u
 
-    
-                    
+    for x in range(n):
+        for u in range(n):
+            for v in range(n):
+                if shortest[u][v][x] > shortest[u][x][x] + shortest[x][v][x]:
+                    shortest[u][v][x+1] = shortest[u][x][x] + shortest[x][v][x]
+                    previous[u][v][x+1] = previous[x][v][x]
+                else:
+                    shortest[u][v][x+1] = shortest[u][v][x]
+                    previous[u][v][x+1] = previous[u][v][x]
 
-    # for i in range(n):
-    #     for j in range(n):
-    #         print(shortest[i][j][0], end=' ')
-    #     print()
-
-    # for i in range(n):
-    #     for j in range(n):
-    #         print(previous[i][j][0], end=' ')
-    #     print()
-
+    return shortest, previous
