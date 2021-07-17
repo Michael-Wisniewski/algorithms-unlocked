@@ -1,5 +1,37 @@
+def return_shortest_path(G, start_vertice, end_vertice):
+    """Time complexity without finding shortest path: Θ(n), where n - number of vertices.
+    Memory consumption: Θ(n).
+
+    >>> dg = {
+    ... 0: [{'v': 1, 'w': 3}, {'v': 2, 'w': 8}],
+    ... 1: [{'v': 3, 'w': 1}],
+    ... 2: [{'v': 1, 'w': 4}],
+    ... 3: [{'v': 0, 'w': 2}, {'v': 2, 'w': -5}],
+    ... }
+    >>> start_vertice = 0
+    >>> end_vertice = 2
+    >>> return_shortest_path(dg, start_vertice, end_vertice)
+    (-1, [0, 1, 3, 2])
+    """
+    shortest, previous = shortest_path(G)
+    length = shortest[start_vertice][end_vertice][-1]
+    path = []
+
+    previous_vertice = end_vertice
+    path.append(previous_vertice)
+
+    for previous_index in range(len(G), 1, -1):
+        previous_vertice = previous[start_vertice][previous_vertice][previous_index]
+
+        if previous_vertice != path[-1]:
+            path.append(previous_vertice)
+
+    path.reverse()
+
+    return length, path
+
 def shortest_path(G):
-    """Time complexity: Θ(n^3) for finding all shartest paths, where n - number of vertices.
+    """Time complexity: Θ(n^3) for finding all shartest paths.
     Works for negative weights but not for cyclic graphs.
 
     Memory consumption: Θ(n^3).
