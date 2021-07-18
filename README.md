@@ -1,28 +1,28 @@
 # Basic algorithms
-Exercises based on the book entitled "Algorithms Unlocked".
+Algorithms implementation based on the book entitled "Algorithms Unlocked".
 
-* Chapter 2
+- Chapter 2
   1. Linear search
   2. Better linear seach
   3. Linear search with guardian
   4. Factorial
   5. Wrong factorial
   6. Linear search with recursion
-* Chapter 3
+- Chapter 3
   1. Binary search
   2. Binary search with recursion
   3. Select sort
   4. Insert sort
   5. Merge sort
   6. Quick sort
-* Chapter 4
+- Chapter 4
   1. Really easy sort
   2. Count equal keys
   3. Count smaller keys
   4. Reorganize
   5. Count sort
   6. Positional sort
-* Chapter 5
+- Chapter 5
   1. Topological sort
   2. Relax vertices
   3. Shortest path
