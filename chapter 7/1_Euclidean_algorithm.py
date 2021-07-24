@@ -2,6 +2,7 @@ from math import floor
 
 def greatest_common_divisor(a, b):
     """Time complexity: O(lg b), where a and are integers.
+    Result: g, i, j where g is the greatest common divisor for i and j where g = a * i + b * j 
 
     >>> a = 10
     >>> b = 0
