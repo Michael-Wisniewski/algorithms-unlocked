@@ -1,3 +1,5 @@
+![lines of code](https://img.shields.io/badge/lines%20of%20code-1868-green?style=flat-square)
+
 # Basic algorithms
 Algorithms implementation based on the book entitled "Algorithms Unlocked".
 
