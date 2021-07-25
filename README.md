@@ -33,3 +33,16 @@ Algorithms implementation based on the book entitled "Algorithms Unlocked".
   8. Find cycle with negative weight
   9. Floyd Warshall shortest path
   10. Floyd Warshall shortest path reconstruction
+- Chapter 6
+  1. Longest common subsequence
+  2. Put together LCS
+  3. Transform tables
+  4. Put together transform table
+  5. Knuth Morris Pratt string search
+- Chapter 7
+  1. Euclidean algorithm
+  2. Modular exponentiation
+- Chapter 8
+  1. Huffman tree
+  2. Lempel Ziv Welch compression
+  3. Lempel Ziv Welch decompression
